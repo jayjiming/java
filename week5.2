@@ -1,0 +1,68 @@
+package work;
+
+import java.util.Scanner;
+public class ClassListDriver {
+ private static ClassList list = null;
+ public static void main(String[] args) {
+  int choose = menu();
+  while(choose!=3){
+   switch(choose){
+   case 1:createList();break;
+   case 2:printList();break;
+   default:System.out.println("无效选择！");
+   }
+   choose = menu();
+  }
+  System.out.println("欢迎下次使用!");
+ }
+ public static void createList(){
+  
+  Scanner scan = new Scanner(System.in);
+  System.out.println("请输入学年:");
+  int year = scan.nextInt();
+  System.out.println("请输入学期(1-2):");
+  int semester = scan.nextInt();
+  
+  System.out.println("请输入课程代码:");
+  String subId = scan.next();
+  System.out.println("请输入课程名称:");
+  String subName = scan.next();
+  Subject sub = new Subject(subId,subName);
+  
+  System.out.println("请输入学生1学号:");
+  String stu1Id = scan.next();
+  System.out.println("请输入学生1姓名:");
+  String stu1Name = scan.next();
+  Student stu1 = new Student(stu1Id,stu1Name);
+  
+  System.out.println("请输入学生2学号:");
+  String stu2Id = scan.next();
+  System.out.println("请输入学生2姓名:");
+  String stu2Name = scan.next();
+  Student stu2 = new Student(stu2Id,stu2Name);
+  
+  list = new ClassList(year, semester, sub, stu1, stu2);
+ }
+ 
+ public static void printList(){
+  //System.out.println( + "学年" + "学期");
+  System.out.println(list);
+  System.out.println("");
+  System.out.println("");
+  System.out.println("");
+  System.out.println("");
+ }
+ 
+ public static int menu(){
+  int choose = 0;
+  System.out.println("======WTU课程管理系统======");
+  System.out.println("1.Create List");
+  System.out.println("2.Print List");
+  System.out.println("3.Exit");
+  System.out.println("Please choose(1-2)");
+  Scanner scan = new Scanner(System.in);
+  choose = scan.nextInt();
+  
+  return choose;
+ }
+}
