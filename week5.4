@@ -1,0 +1,33 @@
+package work;
+
+public class Subject {
+	 private String subId;
+	 private String subName;
+	 
+	 public Subject() {
+	  super();
+	 }
+	 public Subject(String subId, String subName) {
+	  super();
+	  this.subId = subId;
+	  this.subName = subName;
+	 }
+	 public String getSub() {
+	  return subId;
+	 }
+	 public void setSub(String subId) {
+	  this.subId = subId;
+	 }
+	 public String getSubName() {
+	  return subName;
+	 }
+	 public void setSubName(String subName) {
+	  this.subName = subName;
+	 }
+	 @Override
+	 public String toString() {
+	  return "Subject [课程代码=" + subId + ", 课程名称=" + subName + "]";
+	 }
+	 
+	 
+	}
