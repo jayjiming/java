@@ -1,0 +1,68 @@
+package Pockage;
+
+import java.util.Scanner;
+
+public class StringSplit {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		String express = scan.next();
+		String temp;
+		int pos1[],pos2[],pos3[];
+		pos1 = new int[express.length()];
+		pos2 = new int[express.length()];
+		pos3 = new int[express.length()];
+		int j=0,k=0;
+		for(int i=0;i<express.length();i++){
+			char c = express.charAt(i);
+			if(c=='('){
+				pos1[j] = i;
+				j++;
+			}
+			if(c==')'){
+				pos2[j] = i;
+				j++;
+			}
+			if(c==','){
+				pos3[j] = i;
+				
+			}
+		}
+		StringBuffer buffer = new StringBuffer(express);
+		String exp;
+		for(int i=0;i<j;i++){
+			exp = buffer.substring(pos1[j-1]+1, pos2[j]);
+			temp = calculate(exp);
+			System.out.println(temp);
+			buffer = buffer.replace(pos3[j-1]+1,pos2[j],temp);
+		}
+		
+	}
+	public static String calculate(String express){
+		int pos1 = express.indexOf("(");
+		int pos3 = express.indexOf(")");
+		String way = express.substring(0, pos1);
+		
+		double result = 0;
+		if(way.equals("doubleMe")){
+			String c = express.substring(pos1+1, pos3);
+			double data = Double.parseDouble(c);
+			result = 2*data;
+		}else{
+			int pos2 = express.indexOf(",");
+			String a = express.substring(pos1+1,pos2);
+			String b = express.substring(pos2+1,pos3);
+			double data1 = Double.parseDouble(a);
+			double data2 = Double.parseDouble(b);
+			switch(way){
+			case "add":result = data1+data2;break;
+			case "sub":result = data1-data2;break;
+			case "max":result = data1>=data2?data1:data2;break;
+			case "min":result = data1<=data2?data1:data2;break;
+			default:
+				System.out.println("没有相关方法！");
+			}
+		}
+		String info = String.valueOf(result);
+		return info;
+	}
+}
